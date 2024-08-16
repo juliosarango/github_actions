@@ -1,4 +1,4 @@
-name: Triggers en repo
+name: Expresiones en repo
 run-name: Manejando triggers en el repo ${{github.repository}}
 
 on:    
