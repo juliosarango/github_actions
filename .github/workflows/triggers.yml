@@ -1,0 +1,20 @@
+name: Triggers en repo
+run-name: Manejando triggers en el repo ${{github.repository}}
+
+on:
+    push:
+        branches:
+            ['main', 'aprendiendo-**']
+    pull_request:
+        types: [opened, labeled]        
+
+jobs:
+    hola-mundo:
+        runs-on: ubuntu:latest
+        steps:
+        - name: Checkout del repo
+          uses: actions/checkout@v4
+        - name: Definir variables
+          run: echo "USERNAME=${{github.actor}}" >> $GITHUB_ENV      
+        - name: Ejecutar código python
+          run: python saludo.py
