@@ -10,14 +10,39 @@ on:
     issues:
         types:
             - labeled
+    workflow_dispatch:
+        inputs:
+            edad:
+                description: 'Edad'
+                required: true
+                type: number
+            nombre:
+                description: 'Tu nombre'
+                required: true
+                default: 'Juan'
+                type: string
 
 jobs:
     hola-mundo:
         runs-on: ubuntu:latest
         steps:
-        - name: Checkout del repo
-          uses: actions/checkout@v4
-        - name: Definir variables
-          run: echo "USERNAME=${{github.actor}}" >> $GITHUB_ENV      
-        - name: Ejecutar código python
-          run: python saludo.py
+          - name: Checkout del repo
+            uses: actions/checkout@v4
+          - name: Definir variables
+            run: echo "USERNAME=${{github.actor}}" >> $GITHUB_ENV      
+          - name: Ejecutar código python
+            run: python saludo.py
+
+    mayor-de-edad:
+        if: ${{inputs.edad >= 18}}
+        runs-on: ubuntu-latest
+        steps:
+          - name: Script mayor de edad
+            run: echo ${{inputs.nombre}} es mayor de edad
+    
+    menor_de_edad:
+        if: ${{ inputs.edad < 18 }}
+        runs-on: ubuntu-latest
+        steps:
+          - name: Script menor de edad
+            run: echo ${{inputs.nombre}} es menor de edad
