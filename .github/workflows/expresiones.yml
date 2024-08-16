@@ -1,0 +1,30 @@
+name: Triggers en repo
+run-name: Manejando triggers en el repo ${{github.repository}}
+
+on:    
+    workflow_dispatch:
+        inputs:
+            edad:
+                description: 'Edad'
+                required: true
+                type: number
+            nombre:
+                description: 'Tu nombre'
+                required: true
+                default: 'Juan'
+                type: string
+
+jobs:
+    mayor-de-edad:
+        if: ${{inputs.edad >= 35}}
+        runs-on: ubuntu-latest
+        steps:
+          - name: Script mayor de edad
+            run: echo ${{inputs.nombre}} está mayor
+    
+    nombre-cool:
+        if: ${{ inputs.nombre == 'Julio' }}
+        runs-on: ubuntu-latest
+        steps:
+          - name: Script nombre cool
+            run: echo ${{inputs.nombre}} es un nombre cool
