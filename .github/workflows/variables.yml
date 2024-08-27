@@ -19,4 +19,4 @@ jobs:
         steps:
             - name: Saludar secretos
               run: |
-                echo "$SALUDO2, los valores de los secretos personales son: ${{ secrets.PERSONAL_PASS }} y el del team es: ${{ secrets.TEAM_PASS }}. Hoy es ${{ env.DIA_SEMANA }}"
+                echo "$SALUDO, los valores de los secretos personales son: ${{ secrets.PERSONAL_PASS }} y el del team es: ${{ secrets.TEAM_PASS }}. Hoy es ${{ env.DIA_SEMANA }}"
