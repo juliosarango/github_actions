@@ -1,0 +1,22 @@
+name: Variables - usos comunes y saludos
+run-name: Manejando triggers en el repo ${{github.repository}}
+
+on:    
+    workflow_dispatch:
+env:
+    DIA_SEMANA: Martes
+jobs:
+    saludo-variables:
+        runs-on: ubuntu-latest
+        env:
+            SALUDO: hola
+        steps:
+            - name: Saludar variables            
+              run: echo "$SALUDO, ${{ vars.NOMBRE }} ${{ vars.APELLIDO }}. Hoy es ${{ env.DIA_SEMANA }}"
+
+    saludo-secrets:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Saludar secretos
+              run: |
+                echo "$SALUDO2, los valores de los secretos personales son: ${{ secrets.PERSONAL_PASS }} y el del team es: ${{ secrets.TEAM_PASS }}. Hoy es ${{ env.DIA_SEMANA }}"
